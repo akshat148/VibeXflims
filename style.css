@@ -1,0 +1,1334 @@
+/* Global reset to prevent overflow */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styling for the page */
+.all {
+    background-color: #0f0f0f00;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at 50% 50%, 
+                rgba(251, 79, 20, 0.25) 10%, 
+                rgba(19, 24, 27, 1) 60%);
+    background-color: #13181b;
+    background-attachment: fixed; /* Keeps the background static while scrolling */
+    overflow-y: auto; /* Allows vertical scrolling */
+    overflow-x: hidden; /* Restricts horizontal scrolling */
+}
+
+/* Custom scrollbar styling */
+/* Custom Scrollbar Styling for Google Chrome */
+::-webkit-scrollbar {
+    width: 10px; /* Width of the vertical scrollbar */
+    height: 10px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(19, 24, 27, 1); /* Dark background for the track */
+    border-radius: 5px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(251, 79, 20, 0.5); /* Orange color for the thumb */
+    border-radius: 5px; /* Rounded corners for the thumb */
+    border: 2px solid rgba(19, 24, 27, 1); /* Adds spacing between thumb and track */
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(251, 79, 20, 0.8); /* Darker orange on hover */
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: rgba(251, 79, 20, 1); /* Bright orange when active (clicked) */
+}
+
+
+/* Section 1 starts */
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav {
+    margin-top: 10px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    height: 70px;
+    width: 733px;
+    border-radius: 49px;
+    border: 1px solid rgba(251, 79, 20, 0.29);
+    box-shadow: 0 1px 25px rgba(251, 79, 20, 0.43);
+    position: fixed;
+    animation: slideDown 1.2s ease-out;
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: 10;
+}
+
+nav::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(8px); /* Apply blur only behind */
+    z-index: -1; /* Make sure this stays behind the nav content */
+    border-radius: inherit;
+}
+
+/* Keyframe animation for sliding down */
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.nav-links-pc {
+    gap: 20px;
+}
+
+nav #logo {
+    margin-right: 41px;
+    margin-left: 15px;
+    text-decoration: none;
+    font-family: Roboto;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.btn-book {
+    margin-left: 32px;
+    padding: 10px 20px;
+    color: #fb4f14;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: Roboto;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, color 0.5s, background-color 0.5s;
+}
+
+.btn-book::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50px;
+    border: 2px solid rgb(255, 255, 255);
+    animation: border-glow 2s infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.btn-book:hover::before {
+    animation: none; /* Stops the animation on hover */
+    box-shadow: none; /* Removes shadow effect when animation stops */
+    border: 2px solid #fb4f14;
+}
+
+
+@keyframes border-glow {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgb(255, 255, 255), 0 0 15px rgba(255, 255, 255, 0.8);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgb(255, 255, 255), 0 0 30px rgba(255, 255, 255, 0.8);
+    }
+}
+
+
+.btn-book:hover {
+    color: #120f0f;
+    background-color: #fb4f14;
+    box-shadow: 2px 2px 14px rgba(251, 79, 20, 0.5);
+    border: 1px solid rgba(251, 79, 20, 0.4);
+}
+
+/* Mobile dropdown style */
+
+/* Dropdown and Hamburger Menu for Mobile */
+.hamburger {
+    display: none;
+    font-size: 24px;
+    color: white;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+}
+
+/* Mobile dropdown menu */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px; /* Adjust position as needed */
+    right: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 200px;
+    border-radius: 10px;
+    padding: 10px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 20; /* Bring dropdown to front */
+    
+}
+
+.mobile-menu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(21px); /* Apply blur only behind */
+    border-radius: inherit;
+    z-index: -1; /* Keeps it behind the menu items */
+}
+
+.mobile-menu a {
+    padding: 10px 20px;
+    display: block;
+    color: white;
+    text-decoration: none;
+    text-align: left;
+    position: relative;
+    z-index: 1; 
+}
+
+/* Toggle visibility of the mobile menu */
+.show-menu {
+    display: flex !important;
+    position: fixed;
+}
+
+/* Show menu and hide nav items on smaller screens */
+@media (max-width: 747px) {
+    nav {
+        margin-top: 0px;
+        border-radius: 0px;
+        justify-content: space-between;
+        width: 100%;
+        border-bottom: 1px solid rgba(251, 79, 20, 0.29);
+        border-top: none;
+        border-right: none;
+        border-left: none;
+    }
+    .nav-links {
+        display: none;
+    }
+    .hamburger {
+        display: block;
+    }
+    .btn-book {
+        margin-left: 20px;
+        width: 80%;
+    }
+}
+/* Section 1 ends */
+
+
+/* Section 2 starts */
+
+/* Keyframe animation for sliding up */
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* sec1 starts here */
+.sec1a {
+    
+}
+
+.sec1a-mid, .sec1a-down {
+    display: flex;
+    justify-content: center;
+}
+    
+@keyframes fadeInZoom {
+    0% {
+        opacity: 0;
+        transform: scale(0.9); /* Slightly smaller at the start */
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.05); /* Slightly larger at midpoint */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1); /* Final scale */
+    }
+}
+
+.sec1a-up-p {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-family: Roboto;
+    margin-top: 53px;
+    margin-bottom: 0;
+    padding: 94px;
+    padding-bottom: 0px;
+    font-size: 78px;
+    font-weight: bold;
+    color: #f9f8ef;
+    position: relative;
+    animation: fadeInZoom 1.2s ease-out forwards;
+}
+
+.sec1a-mid-p {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: Roboto;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: #f9f8efb3;
+    font-weight: 100;
+    position: relative;
+    animation: slideUp 1s ease-out; /* Apply the slide-up animation */
+}
+
+.sec1a-down-left {
+    text-decoration: none;
+    margin-right: 82px;
+    padding: 15px 50px;
+    background-color: #ffffff00;
+    color: #f9f8efde;
+    height: 64px;
+    border: 2px solid #f9f8efde;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 30px;
+    position: relative;
+    animation: slideUp 1s ease-out; /* Apply the slide-up animation */
+}
+
+.sec1a-down-right {
+    text-decoration: none;
+    padding: 15px 50px;
+    color: #fb4f14;
+    border: none;
+    height: 64px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 30px;
+    transition: box-shadow 0.3s ease, color 0.5s, background-color 0.5s;
+    box-shadow: 9.6px 9.6px 28.8px rgba(0, 0, 0, 0.44);
+    overflow: hidden;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.1);
+    animation: slideUp 1s ease-out;
+}
+.sec1a-down-right::after {
+    content: "";
+    position: absolute;
+    right: 24.2px;
+    opacity: 0;
+    font-size: 34px;
+    transition: opacity 0.3s ease;
+    transform: translate(12px, -8px);
+}
+.sec1a-down-right:hover {
+    color: #120f0f;
+    background-color: #fb4f14;
+    box-shadow: 2px 2px 14px rgba(251, 79, 20, 0.5);
+}
+.sec1a-down-right:hover::after {
+    opacity: 1; /* Show the arrow on hover */
+}
+
+/* Styling for the "Or Contact Through" heading */
+.sec1a-down-u {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: Roboto;
+    color: #f9f8ef;
+    font-size: 24px;
+    font-weight: 100;
+    margin-top: 40px;
+    animation: slideUp 1s ease-out;
+}
+
+/* Flex styling for social media icons */
+.sec1a-down-s {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between icons */
+    margin-top: 20px; /* Space above the icons */
+    animation: slideUp 1s ease-out;
+}
+/* Common styling for all social media icons */
+.sec1a-down-s img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    margin: 0 22px; /* Adds 15px space on left and right of each icon */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+/* Hover effect */
+.sec1a-down-s a:hover img {
+    transform: scale(1.1); /* Slight zoom on hover */
+    box-shadow: 0 4px 10px rgba(251, 79, 20, 0.5); /* Glow effect on hover */
+}
+
+/* Keyframe animation */
+@keyframes slideIn {
+    0% {
+        width: 0%; /* Start with width 0% */
+        margin-left: 100%; /* Start off-screen from the right */
+    }
+    100% {
+        width: 100%; /* End with full width */
+        margin-left: 0%; /* Move it to the normal position */
+    }
+}
+.sec1-hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, #13181b 15%, /* Start color */ #cdcdcd 50%, /* Middle color */ #13181b 85.2%);
+    margin: 40px 0;
+    width: 0%; /* Initially set the width to 0% */
+    animation: slideIn 2s forwards; /* Animation name and duration */
+}
+
+@media (max-width: 768px) {
+    .sec1a-up-p {
+        font-size: 57px;
+        margin-top: 40px;
+        padding-top: 68px;
+    }
+    .sec1a-mid-p {
+        font-size: 25px;
+    }
+    .sec1a-down {
+        display: grid;
+        justify-items: center;
+        gap: 24px;
+    }
+    .sec1a-down-left {
+        margin-right: 0px;
+        padding: 12px 49px;
+        height: 53px;
+        font-size: 23px;
+    }
+    .sec1a-down-right {
+        margin-left: 0px;
+        padding: 12px 36px;
+        height: 52px;
+        font-size: 23px;
+    }
+    .sec1a-down-s {
+        margin-top: 10px;
+    }
+    .sec1a-down-s img {
+        width: 40px;
+        height: 40px;
+        margin: 0px 2px;
+    }
+    
+}
+@media (max-width: 658px) {
+    .sec1a-up-p {
+        font-size: 57px;
+        margin-top: 40px;
+        padding-top: 68px;
+    }
+    .sec1a-mid-p {
+        font-size: 25px;
+    }
+    .sec1a-down {
+        display: grid;
+        justify-items: center;
+        gap: 24px;
+    }
+    .sec1a-down-left {
+        margin-right: 0px;
+        padding: 12px 49px;
+        height: 53px;
+        font-size: 23px;
+    }
+    .sec1a-down-right {
+        margin-left: 0px;
+        padding: 12px 36px;
+        height: 52px;
+        font-size: 23px;
+    }
+    .sec1a-down-s {
+        margin-top: 10px;
+    }
+    .sec1a-down-s img {
+        width: 40px;
+        height: 40px;
+        margin: 0px 2px;
+    }
+    
+}
+
+/* Section 2 ends */
+
+
+/* Section 3 starts */
+
+/* Sec1b */
+.sec1b-up {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: Roboto;
+    color: #f9f8ef;
+    font-size: 33px;
+    font-weight: 300;
+    padding-right: 3px;
+    margin: 40px 0px;
+    animation: slideUp 1s ease-out;
+}
+
+.sec1b-down {
+    display: flex; 
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Brands logos slider*/
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.sec1b-down-b{
+    overflow: hidden;
+    white-space: nowrap;
+    width: 80%;
+    position: relative;
+}
+
+.sec1b-down-b:before, .sec1b-down-b:after{
+    position: absolute;
+    top: 0;
+    width: 10vw;
+    height: 100%;
+    content: "";
+    z-index: 2;
+}
+
+.sec1b-down-b:before{
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), #13181b);
+    
+}
+
+.sec1b-down-b:after{
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #13181b);
+}
+
+.sec1b-down-b:hover .brand-slide{
+    animation-play-state: paused;
+}
+
+.brand-slide{
+    display: inline-block;
+    animation: 60s slide infinite linear;
+}
+
+.brand-slide img {
+    height: 85px;
+    margin: 0 26px;
+    transition: transform 0.3s ease;
+}
+
+.brand-slide img:hover {
+    transform: scale(1.2); /* Scale up by 1.1 on hover */
+}
+
+@media (max-width: 1140px) {
+    .sec1b-down-b {
+        width: 90%;
+    }
+}
+@media (max-width: 836px) {
+    .sec1b-down-b {
+        width: 90%;
+    }
+}
+@media (max-width: 770px) {
+    .sec1b-down-b {
+        width: 100%;
+    }
+    .sec1b-down-b:before {
+        background: transparent;
+    }
+    .sec1b-down-b:after {
+        background: transparent;
+    }
+}
+
+/* Section 3 ends */
+
+
+/* Section 4 starts */
+
+/* Styling for sec1c section */
+.sec1c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1vw 0; /* Adjust padding as desired */
+    background: transparent;
+}
+
+.sec1c-u {
+    text-align: center;
+    font-family: Roboto;
+    color: #f9f8ef;
+    font-size: 48px;
+    font-weight: 400;
+    margin-bottom: 24px;
+}
+
+/* Modify sec1c-video to set its initial position */
+.sec1c-video {
+    max-width: 85%;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .sec1c-video {
+        max-width: 94%;
+    }
+}
+
+/* Section 4 ends */
+
+
+/* Section 5 starts */
+
+/* sec2 */
+.sec2 {
+
+}
+
+.sec2a {
+
+}
+
+.sec2a-u {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: Roboto;
+    color: #f9f8ef;
+    font-size: 48px;
+    font-weight: 400;
+    margin-top: 40px;
+    margin-bottom: 5px;
+}
+
+.sec2a-p {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: Roboto;
+    color: #f9f8ef;
+    font-size: 24px;
+    font-weight: 100;
+    margin: 5px 0px;
+    margin-bottom: 40px;
+}
+        .sec2a-b {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+/* Container for centering and width control */
+.video-container,
+.reel-container {
+    width: 73%;
+    max-width: 900px; /* Limit maximum width */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Container for centering and width control */
+.video-container {
+    width: 100%;
+    max-width: 1877px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+/* Grid container for videos */
+.video-grid {
+    display: grid;
+    width: 72%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3vw;
+    margin-top: 20px;
+    padding: 0;
+    justify-items: center;
+}
+
+/* Style individual iframes */
+.video-grid iframe {
+    width: 100%;
+    max-width: 643px;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+
+
+/* Reel Container with added spacing from the video section */
+.reel-container {
+    width: 100%;
+    max-width: 1877px;
+    justify-content: center;
+    display: flex;
+    margin: 40px auto 0;
+}
+
+/* Grid for reels */
+.reel-grid {
+    display: grid;
+    justify-items: center;
+    width: 66%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4vw;
+    padding: 0 15px;
+}
+
+/* Individual reel styling */
+.reel-grid iframe {
+    width: 100%;
+    max-width: 361px;
+    aspect-ratio: 9 / 16;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .video-grid,
+    .reel-grid {
+        grid-template-columns: 1fr; /* Stack videos on smaller screens */
+    }
+    .reel-grid {
+        width: 66%;
+    }
+    .reel-grid iframe {
+        width: 262px;
+    }
+    .sec2a-b {
+        gap: 22px;
+    }
+}
+
+@media (max-width: 540px) {
+    .video-grid,
+    .reel-grid {
+        grid-template-columns: 1fr; /* Stack videos on smaller screens */
+    }
+    .reel-grid {
+        width: 100%;
+    }
+    .reel-grid iframe {
+        width: 232px;
+    }
+    .sec2a-b {
+        gap: 22px;
+    }
+}
+
+@media (max-width: 428px) {
+    .video-grid,
+    .reel-grid {
+        grid-template-columns: 1fr; /* Stack videos on smaller screens */
+    }
+    .reel-grid {
+        width: 100%;
+    }
+    .reel-grid iframe {
+        width: 183px;
+    }
+    .sec2a-b {
+        gap: 22px;
+    }
+}
+
+/* Section 5 ends */
+
+
+/* Section 6 starts */
+
+.sec3 {
+    max-width: 1877px;
+    margin: 0 auto;
+    padding: 40px 0;
+    padding-top: 59px;
+    color: #f9f8ef;
+    text-align: center;
+}
+
+.sec3a {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.sec3a-container {
+    display: flex;
+    width: 63%;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sec3a-u {
+    font-family: Roboto, sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    color: #f9f8ef;
+    margin: 0;
+}
+
+.sec3a-p {
+    font-family: Roboto, sans-serif;
+    font-size: 42px;
+    text-align: center;
+    padding-top: 0.3vw;
+    color: #f9f8efb3;
+    font-weight: 100;
+    margin: 0;
+}
+
+.sec3b {
+    display: flex;
+    justify-content: center;
+    margin: 28px auto;
+}
+
+.sec3b-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 0 auto;
+}
+
+.faqs {
+    font-family: Roboto, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #e9e1de;
+    margin: 10px 0;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Add plus sign after each FAQ heading */
+.faqs::after {
+    content: '+';
+    font-size: 24px;
+    color: #f9f8ef;
+    position: absolute;
+    right: -30px;
+    transition: transform 0.3s ease, content 0.3s ease;
+}
+
+/* Rotate and change plus sign to cross when FAQ item is active */
+.active .faqs::after {
+    content: '×';               /* Change the content to '×' */
+    transform: rotate(90deg);   /* Rotate by 45 degrees */
+    color: #e74c3c;             /* Optional: change color for emphasis */
+}
+
+.answer {
+    display: none;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    font-weight: 100;
+    color: #f9f8efb3;
+    margin: 5px 0 10px;
+    line-height: 1.6;
+}
+
+.faq-item.active .answer {
+    display: block; /* Show answer when FAQ item is active */
+}
+
+.sec3-hr {
+    width: 529px;
+    margin: 0px auto;
+    border: none;
+    border-top: 1px solid #f9f8efe3;
+    opacity: 0.7;
+    transition: width 0.3s ease;
+}
+
+/* Expand hr width to 98% when the FAQ item is active */
+.faq-item.active .sec3-hr {
+    width: 98%; /* Expanded width */
+}
+
+@media (max-width: 1600px) {
+    .sec3a-p {
+        padding-top: 0.6vw;
+    }
+}
+
+@media (max-width: 1500px) {
+    .sec3-hr {
+        width: 572px;
+    }
+}
+
+@media (max-width: 1328px) {
+    .sec3a-u {
+       
+    }
+    .sec3a-p {
+        padding-top: 12px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .sec3a-p {
+        padding-top: 12px;
+    }
+}
+
+@media (max-width: 829px) {
+    .sec3a-container {
+        display: block;
+        width: 100%;
+    }
+    .sec3a-u {
+
+        font-size: 39px;
+        text-align: center;
+    }
+
+    .sec3a-p {
+        font-size: 33px;
+        text-align: center;
+        padding-top: 2vw;
+    }
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+    .sec3a-container {
+        display: block;
+        width: 100%;
+    }
+
+    .sec3b-container {
+        width: 90%;
+        gap: 15px;
+    }
+
+    .sec3a-u {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .sec3a-p {
+        font-size: 24px;
+        text-align: center;
+        padding-top: 2vw;
+    }
+
+    .faqs {
+        font-size: 20px;
+    }
+
+    .answer {
+        font-size: 16px;
+    }
+
+    .sec3-hr {
+        width: 80%;
+    }
+
+    /* Add plus sign after each FAQ heading */
+    .faqs::after {
+        content: '';
+        font-size: 24px;
+        color: #f9f8ef;
+        position: absolute;
+        right: -30px;
+        transition: transform 0.3s ease, content 0.3s ease;
+    }
+    
+    /* Rotate and change plus sign to cross when FAQ item is active */
+    .active .faqs::after {
+        content: '';               /* Change the content to '×' */
+        transform: rotate(90deg);   /* Rotate by 45 degrees */
+        color: #e74c3c;             /* Optional: change color for emphasis */
+    }
+}
+
+@media (max-width: 668px) {
+    .sec3-hr {
+        width: 90%;
+    }
+}
+
+@media (max-width: 540px) {
+    .sec3-hr {
+        width: 100%;
+    }
+}
+
+/* Section 6 ends */
+
+
+/* Section 7 starts */
+
+.sec4 {
+    max-width: 1877px;
+    padding: 60px 20px;
+    color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sec4a {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(32deg, #2a2a2ab8 36%, rgba(251, 79, 20, 0.25) 100%);
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 74%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+
+.sec4a-container {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    justify-content: center;
+    align-items: center;
+    padding: 0 37px;
+    border-radius: 12px;
+    max-width: 74%;
+}
+
+.profile img {
+    width: 200px;
+    height: 200px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.about {
+    text-align: left;
+}
+
+.about-h {
+    font-family: 'Roboto', sans-serif;
+    font-size: 47px;
+    font-weight: 500;
+    color: #f9f8ef;
+    margin: 0 0 12px;
+}
+
+.about-p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: #f9f8efb3;
+    margin: 0 0 18px;
+    line-height: 1.6;
+}
+
+.about-a {
+    text-decoration: none;
+    padding: 12px 25px; /* Larger padding for a bigger button */
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #fb4f14; /* Softer button color */
+    color: black;
+    transition: box-shadow 0.3s ease, color 0.5s, background-color 0.5s;
+    box-shadow: 9.6px 9.6px 28.8px rgba(0, 0, 0, 0.44);
+    border-radius: 50px;
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease; 
+}
+
+.about-a:hover {
+    color: #120f0f;
+    background-color: #fb4f14;
+    box-shadow: 2px 2px 14px rgba(251, 79, 20, 0.5);
+    border: 0px solid rgba(251, 79, 20, 0.4);
+}
+
+.sec4a:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35); /* Shadow on container hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1300px) {
+    .sec4a-container {
+        gap: 20px;
+    }
+    .about-h {
+        font-size: 42px;
+    }
+    .about-p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .sec4a-container {
+        gap: 4px;
+    }
+    .about-h {
+        font-size: 36px;
+    }
+    .about-p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 1080px) {
+    .sec4a-container {
+        gap: 0px;
+        padding: 0;
+    }
+}
+
+@media (max-width: 967px) {
+    .about-h {
+        font-size: 29px;
+    }
+    .about-p {
+        font-size: 14px;
+    }
+    .profile img {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 821px) {
+    .about-h {
+        font-size: 29px;
+    }
+    .about-p {
+        font-size: 14px;
+    }
+    .profile img {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sec4a-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px; /* Reduced padding for mobile */
+        gap: 0;
+    }
+
+    .profile img {
+        margin-top: 0px;
+        margin-bottom: 20px;
+        margin-right: 0;
+    }
+
+    .about {
+        text-align: center;
+    }
+
+    .about-h {
+        font-size: 24px; /* Slightly smaller for mobile */
+    }
+
+    .about-p {
+        font-size: 15px; /* Reduced for mobile readability */
+    }
+}
+
+@media (max-width: 634px) {
+    .sec4a-container {
+        padding: 20px 0px;
+    }
+}
+
+@media (max-width: 562px) {
+    .sec4a-container {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 460px) {
+    .sec4a {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 394px) {
+    .sec4a {
+        max-width: 100%;
+    }
+}
+
+/* Section 7 ends */
+
+
+/* Section 8 starts */
+
+footer {
+    background-color: #11111100;
+    padding: 20px 0;
+    padding-bottom: 0;
+    color: #f9f8ef;
+    text-align: center;
+}
+
+.foot-a {
+    display: flex;
+    justify-content: center;
+}
+
+.foot1 {
+    width: 60%;
+    max-width: 60%;
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 89px;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+}
+
+.foot1 h6 {
+    margin: 5px 0;
+    font-weight: 300;
+    color: #f9f8efb5;
+}
+
+.foot1 h6:first-child {
+    font-size: 18px;
+    font-weight: 300;
+    color: #f9f8ef;
+}
+
+.madeby {
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: 100;
+    color: #ffffffd4;
+    text-align: center;
+}
+
+@media (max-width: 699px) {
+    .foot-a {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .foot1 {
+        gap: 33px;
+        max-width: 100%;
+        width: 100%;
+        padding-bottom: 6px;
+    }
+    .madeby {
+        justify-content: center;
+        padding-top: 0;
+    }
+}
+
+/* Section 8 ends */
