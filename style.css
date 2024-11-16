@@ -68,7 +68,6 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
     height: 70px;
     width: 733px;
     border-radius: 49px;
@@ -102,10 +101,6 @@ nav::before {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.nav-links-pc {
-    gap: 20px;
 }
 
 nav #logo {
@@ -367,6 +362,7 @@ nav ul li a:hover {
 
 .sec1a-down-right {
     text-decoration: none;
+    margin-left: 39px;
     padding: 15px 50px;
     color: #fb4f14;
     border: none;
@@ -448,7 +444,7 @@ nav ul li a:hover {
 .sec1-hr {
     border: none;
     height: 1px;
-    background: linear-gradient(to right, #13181b 15%, /* Start color */ #cdcdcd 50%, /* Middle color */ #13181b 85.2%);
+    background: linear-gradient(to right, #13181b 20%, /* Start color */ #cdcdcd 50%, /* Middle color */ #13181b 80%);
     margin: 40px 0;
     width: 0%; /* Initially set the width to 0% */
     animation: slideIn 2s forwards; /* Animation name and duration */
@@ -540,7 +536,7 @@ nav ul li a:hover {
     font-family: Roboto;
     color: #f9f8ef;
     font-size: 33px;
-    font-weight: 300;
+    font-weight: 100;
     padding-right: 3px;
     margin: 40px 0px;
     animation: slideUp 1s ease-out;
@@ -549,7 +545,7 @@ nav ul li a:hover {
 .sec1b-down {
     display: flex; 
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 /* Brands logos slider*/
@@ -640,26 +636,18 @@ nav ul li a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     padding: 1vw 0; /* Adjust padding as desired */
     background: transparent;
 }
 
-.sec1c-u {
-    text-align: center;
-    font-family: Roboto;
-    color: #f9f8ef;
-    font-size: 48px;
-    font-weight: 400;
-    margin-bottom: 24px;
-}
-
 /* Modify sec1c-video to set its initial position */
 .sec1c-video {
-    max-width: 85%;
+    max-width: 78%;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     object-fit: cover;
+    transform: scale(0.8); /* Start with a smaller size */
+    transition: transform 0.2s ease-out; /* Smooth transition for each scroll event */
 }
 
 @media (max-width: 768px) {
@@ -849,8 +837,7 @@ nav ul li a:hover {
 .sec3a-container {
     display: flex;
     width: 63%;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: space-between;
 }
 
 .sec3a-u {
@@ -954,9 +941,10 @@ nav ul li a:hover {
 
 @media (max-width: 1328px) {
     .sec3a-u {
-        
+        padding-right: 7px;
     }
     .sec3a-p {
+        padding-left: 7px;
         padding-top: 12px;
     }
 }
@@ -1273,14 +1261,7 @@ footer {
     text-align: center;
 }
 
-.foot-a {
-    display: flex;
-    justify-content: center;
-}
-
 .foot1 {
-    width: 60%;
-    max-width: 60%;
     padding: 12px 0;
     display: flex;
     align-items: center;
@@ -1302,31 +1283,9 @@ footer {
     color: #f9f8ef;
 }
 
-.madeby {
-    padding: 12px 0;
-    display: flex;
-    align-items: center;
-    font-family: 'Roboto', sans-serif;
-    font-size: 17px;
-    font-weight: 100;
-    color: #ffffffd4;
-    text-align: center;
-}
-
 @media (max-width: 699px) {
-    .foot-a {
-        flex-direction: column;
-        justify-content: center;
-    }
     .foot1 {
         gap: 33px;
-        max-width: 100%;
-        width: 100%;
-        padding-bottom: 6px;
-    }
-    .madeby {
-        justify-content: center;
-        padding-top: 0;
     }
 }
 
